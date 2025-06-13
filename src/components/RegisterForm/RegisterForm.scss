@@ -1,0 +1,120 @@
+.register-container {
+  display: flex;
+  background-color: #f5f5f5;
+
+  .image-section {
+    flex: 1;
+    // background-image: url('/src/assets/register-image.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 1;
+      width: 80%;
+
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .form-section {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .register-form {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+
+      .form-title {
+        text-align: left;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .form-subtitle {
+        text-align: left;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-field {
+        margin-bottom: 15px;
+      }
+
+      .register-button {
+        width: 100%;
+        margin-top: 16px;
+        padding: 12px;
+        font-size: 16px;
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 24px;
+        color: #666;
+        font-size: 14px;
+
+        a {
+          color: #1976d2;
+          text-decoration: none;
+          margin-left: 4px;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .register-container {
+    flex-direction: column;
+
+    .image-section {
+      min-height: 300px;
+    }
+  }
+} 
