@@ -51,7 +51,6 @@ const RegisterForm: React.FC = () => {
     return;
   }
 
-  // Example: Check for empty required fields
   for (const key in formData) {
     if ((formData as any)[key] === "") {
       alert("Please fill all fields.");
@@ -60,13 +59,9 @@ const RegisterForm: React.FC = () => {
   }
 
   try {
-    // Dummy API endpoint
-    const response = await fetch("https://dummyapi.io/data/api/user/register", {
+    const response = await fetch("http://localhost:8000/api/users/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // "app-id": "YOUR_DUMMYAPI_APP_ID" // Uncomment if using dummyapi.io
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
 

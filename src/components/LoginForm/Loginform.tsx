@@ -9,13 +9,15 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import './LoginForm.scss';
-
+import { useNavigate } from 'react-router-dom';
 const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,12 +27,35 @@ const LoginForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login attempt with:', formData);
-  };
 
+    // Basic validation
+    if (!formData.email || !formData.password) {
+      alert('Please enter both email and password.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/api/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const data = await response.json();
+      console.log('Login successful:', data);
+      alert('Login successful!');
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed. Please check your credentials.');
+    }
+  };
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
