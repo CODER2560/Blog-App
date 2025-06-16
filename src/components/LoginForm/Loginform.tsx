@@ -49,6 +49,8 @@ const LoginForm: React.FC = () => {
 
       const data = await response.json();
       console.log('Login successful:', data);
+      // Store user data or token if needed
+      localStorage.setItem('user', JSON.stringify(data));
       alert('Login successful!');
       navigate('/dashboard');
     } catch (error) {

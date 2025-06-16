@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 // Load env vars
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cors("*"));
 
 // Mount routers
 app.use('/api/users', userRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
